@@ -6,6 +6,7 @@ class Query {
 	constructor() {
 		this.query = [];
 		this.response = [];
+		this.ptr = 0;
 	}
 
 	append(command) {
@@ -22,15 +23,22 @@ class Query {
 		}
 	}
 
-	print(index, verbose = false) {
-		console.log(this.query.length);
+	print(verbose = false) {
+		this.response.push("antwoord"); // Debug
+
+		let info = "";
 		if(verbose) {
-			//for(let i = 0; i < this.query.length; i++)
-				/*$("#console")*/document.getElementById("console").innerHTML =
-					"<b style='color: #FFB505;'>Q: </b>" + this.query[index] + "<br><b style='color: #20D644;'>R: </b>" + document.getElementById("console").innerHTML;
+			info = "<b style='color: #FFB505;'>Q: </b>";
+			for(let i = 1; i < this.query.length; i++)
+				info += this.query[i] + " ";
+			info += "<br><b style='color: #20D644;'>R: </b>";
 		}
 
-		document.getElementById("console").innerHTML = "<br>" + document.getElementById("console").innerHTML;
+		for(let i = 0; i < this.response.length; i++)
+			info += this.response[i] + " ";
+
+		info += "<br>";
+		document.getElementById("console").innerHTML = info + document.getElementById("console").innerHTML;
 	}
 
 	clear() {
