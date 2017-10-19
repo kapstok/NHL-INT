@@ -1,11 +1,12 @@
 var express = require('express');
+app = express();
 var path = require('path');
 
 var terminal = require('./routes/terminal');
 var users = require('./routes/users');
 var server = require('./routes/server');
 
-var app = express();
+
 
 //var jQuery = require('jquery');
 
@@ -20,7 +21,7 @@ app.use('/style', express.static(__dirname + '/dist/style'));
 
 app.use('/', terminal);
 app.use('/users', users);
-app.use('/server', server);
+//app.use('/server', server);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

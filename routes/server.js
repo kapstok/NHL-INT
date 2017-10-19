@@ -1,15 +1,19 @@
-var express = require('express');
-//var path = require('path');
-var bodyParser = require('body-parser');
-var router = express.Router();
+// When something gets posted to url /form, it will be parsed here.
 
-var app = express();
+var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post("/form", function (req, res) {
-    console.log(req.body.user.name);
-});
+var response = {
+	queries: [],
+	results: ["hoi"]
+};
 
-module.exports = router;
+app.post("/form", function (req, res) {
+	response.queries = Object.keys(req.body);
+	console.log(response);
+	res.locals.title = "???";
+	res.json(response);
+	return;
+});

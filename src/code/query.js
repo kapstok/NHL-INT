@@ -14,18 +14,21 @@ class Query {
 	}
 
 	execute(index) {
-		this.query[index];
+		let r = window.parseOps(this.query, index+1);
+		if(r == null)
+			this.response.push("antwoord"); // Debug
+		else
+			this.response.push(r);
 	}
-
+/*
 	execute() {
-		for(let i = 0; i < this.query.length; i++) {
-			this.execute(i);
-		}
+		console.log(this.query.length);
+//		for(var i = 0; i < this.query.length; i++) {
+			this.execute(0);//i);
+//		}
 	}
-
+*/
 	print(verbose = false) {
-		this.response.push("antwoord"); // Debug
-
 		let info = "";
 		if(verbose) {
 			info = "<b style='color: #FFB505;'>Q: </b>";
