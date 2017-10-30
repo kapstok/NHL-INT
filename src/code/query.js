@@ -1,4 +1,4 @@
-import $ from "jquery";
+//import $ from "jquery";
 
 console.log("query imported!");
 
@@ -41,11 +41,11 @@ class Query {
 			info += this.response[i] + " ";
 
 		info += "<br>";
-		document.getElementById("console").innerHTML = info + document.getElementById("console").innerHTML;
+		$("#console").html(info + $("#console").html());
 	}
 
 	clear() {
-		document.getElementById("console").innerHTML = "";
+		$("#console").html("");
 	}
 }
 

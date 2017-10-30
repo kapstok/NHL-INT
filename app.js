@@ -6,9 +6,7 @@ var terminal = require('./routes/terminal');
 var users = require('./routes/users');
 var server = require('./routes/server');
 
-
-
-//var jQuery = require('jquery');
+var $ = require('jquery');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/bundle', express.static(__dirname + '/dist/bundle.js'));
 app.use('/style', express.static(__dirname + '/dist/style'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.js'));
 
 app.use('/', terminal);
 app.use('/users', users);
@@ -39,6 +38,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// 'Mainloop'
+app.listen(3000, function() {
+	console.log("#### Server gestart op http://localhost:3000 ####");
 });
 
 module.exports = app;

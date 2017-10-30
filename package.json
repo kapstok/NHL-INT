@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/webpack --config webpack.config.js && echo '\n\nWebshell running on 127.0.0.1:3000 now..' && node ./bin/www"
+    "start": "webpack && node app"
   },
   "author": "Jan Allersma",
   "dependencies": {
@@ -11,7 +11,9 @@
     "body-parser": "^1.18.2",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "webpack": "^3.6.0"

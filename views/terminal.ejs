@@ -7,16 +7,18 @@
 </head>
 <body>
 	<script src="bundle"></script>
+	<script src="/jquery"></script>
 	<form style="width:100vw;" onsubmit="return Parse();">
 		<input id="input" type="text" name="userinput" autocomplete="off">
 	</form><br>
 
 	<div id="consoleOverlay"><div id="console"></div></div>
 	<script>
-		document.getElementById("input").focus();
-		document.getElementById("input").onblur = function () {
+		console.log($("#input"));
+		$("#input").focus();
+		$("#input").onblur = function () {
 			setTimeout(function() {
-				document.getElementById("input").focus();
+				$("#input").focus();
 			});
 		};
 	</script>

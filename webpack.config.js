@@ -6,9 +6,16 @@ module.exports = {
 		not require any dependencies, except for the Webpack
 		entry point.
 	*/
-	entry: ["./src/code/parser.js","./src/code/query.js","./src/code/client/operators.js"],
+	entry: ["./src/code/query.js","./src/code/client/operators.js", "./src/code/parser.js"],
 	output: {
 		filename: "bundle.js", // Tmp name.
 		path: path.resolve(__dirname, "dist")
-	}
+	},
+	module: {
+		loaders: [{
+			test: /.js$/,
+			exclude: /node_modules/,
+			loader: 'babel-loader'
+		}]
+	},
 };
