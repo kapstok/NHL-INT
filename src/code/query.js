@@ -1,6 +1,7 @@
 //import $ from "jquery";
 
 console.log("query imported!");
+var info = "";
 
 class Query {
 	constructor() {
@@ -29,9 +30,8 @@ class Query {
 	}
 */
 	print(verbose = false) {
-		let info = "";
 		if(verbose) {
-			info = "<b style='color: #FFB505;'>Q: </b>";
+			info += "<b style='color: #FFB505;'>Q: </b>";
 			for(let i = 1; i < this.query.length; i++)
 				info += this.query[i] + " ";
 			info += "<br><b style='color: #20D644;'>R: </b>";
