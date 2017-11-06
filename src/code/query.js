@@ -1,5 +1,4 @@
 console.log("query imported!");
-var info = "";
 
 import parseOps from './client/operators.js';
 
@@ -19,9 +18,10 @@ export default class {
 	}
 
 	print(verbose = false) {
+		let info = "";
 		if(verbose) {
 			info += "<b style='color: #FFB505;'>Q: </b>";
-      
+
 			for(let i = 1; i < this.request.length; i++)
 				info += this.request[i] + " ";
 
