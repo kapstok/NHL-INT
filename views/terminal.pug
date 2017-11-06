@@ -1,0 +1,13 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet' href='style/terminal.css')
+	body
+		script(src='/bundle')
+		script(src='/jquery')
+		form(style='width:100vw;', onsubmit='return Parse();')
+			input(id='input', type='text', name='userinput', autocomplete='off')
+		br
+		div(id='consoleOverlay')
+			div(id='console')

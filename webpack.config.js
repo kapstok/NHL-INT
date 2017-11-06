@@ -11,11 +11,9 @@ module.exports = {
 		filename: "bundle.js", // Tmp name.
 		path: path.resolve(__dirname, "dist")
 	},
-	module: {
-		loaders: [{
-			test: /.js$/,
-			exclude: /node_modules/,
-			loader: 'babel-loader'
-		}]
-	},
+	resolve: {
+		alias: {
+			bundle: path.resolve(__dirname, 'dist/bundle.js')
+		}
+	}
 };

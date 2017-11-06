@@ -20,9 +20,11 @@ export default class {
 	print(verbose = false) {
 		let info = "";
 		if(verbose) {
-			info = "<b style='color: #FFB505;'>Q: </b>";
+			info += "<b style='color: #FFB505;'>Q: </b>";
+
 			for(let i = 1; i < this.request.length; i++)
 				info += this.request[i] + " ";
+
 			info += "<br><b style='color: #20D644;'>R: </b>";
 		}
 
