@@ -1,39 +1,30 @@
-//import $ from "jquery";
-
 console.log("query imported!");
 var info = "";
 
-class Query {
+import parseOps from './client/operators.js';
+
+export default class {
 	constructor() {
-		this.query = [];
+		this.request = [];
 		this.response = [];
 		this.ptr = 0;
 	}
 
 	append(command) {
-		this.query.push(command);
+		this.request.push(command);
 	}
 
 	execute(index) {
-		let r = window.parseOps(this.query, index+1);
-		if(r == null)
-			this.response.push("antwoord"); // Debug
-		else
-			this.response.push(r);
+		parseOps(this.request, this.response, index+1);
 	}
-/*
-	execute() {
-		console.log(this.query.length);
-//		for(var i = 0; i < this.query.length; i++) {
-			this.execute(0);//i);
-//		}
-	}
-*/
+
 	print(verbose = false) {
 		if(verbose) {
 			info += "<b style='color: #FFB505;'>Q: </b>";
-			for(let i = 1; i < this.query.length; i++)
-				info += this.query[i] + " ";
+      
+			for(let i = 1; i < this.request.length; i++)
+				info += this.request[i] + " ";
+
 			info += "<br><b style='color: #20D644;'>R: </b>";
 		}
 
@@ -41,12 +32,6 @@ class Query {
 			info += this.response[i] + " ";
 
 		info += "<br>";
-		$("#console").html(info + $("#console").html());
-	}
-
-	clear() {
-		$("#console").html("");
+		return info;
 	}
 }
-
-window.Query = Query;
