@@ -1,4 +1,4 @@
-// When something gets posted to url /form, it will be parsed here.
+// When something gets posted to url '/form', it will be parsed here.
 
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -15,11 +15,12 @@ let response = {
 function routeQuery(query) {
 	let id = Math.random();
 	console.log("ID: " + id);
+
 	let script = require(serverPath + query[0] + '.js');
 
 	let superquery = []; // Copy of query to prevent changes on query.
-	let subquery = [];
-	let superresult, subresult; // supperresult is necessary due to bugs occuring when returning from .forEach function.
+	let subquery = []; // subquery is the part of superquery that is being parsed in this function.
+	let superresult, subresult; // superresult is necessary due to bugs occuring when returning from .forEach function.
 
 	query.forEach((param) => { superquery.push(param); });
 
@@ -31,19 +32,19 @@ function routeQuery(query) {
 				break;
 			case "|":
 				subresult = script.execute (subquery);
-				let testtt = superquery.splice(0, 1);
-				testtt.push(subresult);
-				console.log("testtt:");console.log(testtt);
+				let restquery = superquery.splice(0, 1);
+				restquery.push(subresult);
+				console.log("restquery:");console.log(restquery);
 
 				for(
 					let args = query.length - (subquery.length + 2); args > 0; args--
 				) {
-					testtt.push(query[query.length - args]);
+					restquery.push(query[query.length - args]);
 				}
 
 				console.log("query:");console.log(query);
 				console.log("return from " + id);
-				superresult = routeQuery(testtt);
+				superresult = routeQuery(restquery);
 				break;
 			default:
 				subquery.push(param);

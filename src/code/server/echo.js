@@ -1,3 +1,5 @@
+// echoes all arguments (except 'echo' itself, ofc)
+
 function execute (args) {
 	let result = "";
 
