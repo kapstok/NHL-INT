@@ -15,22 +15,22 @@ window.Parse = function() {
 	return false;
 }
 
-window.toServer = function(query, response) {
+window.toServer = function(request, response, query) {
 	console.log("Sending request..");
-	let request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			let result = JSON.parse(request.responseText);
-			result.queries.forEach((q) => {
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			let json = JSON.parse(xhttp.responseText);
+			json.queries.forEach((q) => {
 				query.push(q);
 			});
-			result.results.forEach((r) => {
+			json.results.forEach((r) => {
 				response.push(r);
 			});
 			shc.redraw();
 		}
 	};
-	request.open("POST", "/form?r=" + Math.random(), true); // Random param to force not to use caching.
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(query);
+	xhttp.open("POST", "/form?r=" + Math.random(), true); // Random param to force not to use caching.
+	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhttp.send(request);
 }
