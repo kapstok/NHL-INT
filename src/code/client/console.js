@@ -13,31 +13,21 @@ export default class {
 		let result;
 
 		this.queries.push(new Query());
-		this.queries[this.queries.length - 1].append(query);
 
-		while(result = regex.exec(query))
-			this.queries[this.queries.length - 1].append(result[1]);
-
-		console.log(this.queries[this.queries.length - 1].request);
-
-		this.queries[this.queries.length - 1].execute(0);
-//		window.queries[window.qIndex].print(true);
+		this.queries[this.queries.length - 1].setRequest(query.split(" "));
+		this.queries[this.queries.length - 1].execute();
 	}
 
 	redraw() {
+		$('#console').html("");
+
 		this.queries.forEach((query) => {
-			console.log(query);
 			$('#console').html(query.print(true) + $('#console').html());
 		});
 	}
 
 	clear() {
+		this.queries = [];
 		$('#console').html("");
-	}
-
-	debug() {
-		setTimeout(() => {
-		$('#console').html("Console: Ping!" + $('#console').html());
-		}, 5000);
 	}
 }

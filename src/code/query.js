@@ -6,15 +6,15 @@ export default class {
 	constructor() {
 		this.request = [];
 		this.response = [];
-		this.ptr = 0;
 	}
 
-	append(command) {
-		this.request.push(command);
+	setRequest(command) {
+		this.command = command;
+		command.forEach((cmd) => { this.request.push(cmd); });
 	}
 
-	execute(index) {
-		parseOps(this.request, this.response, index+1);
+	execute() {
+		parseOps(this);
 	}
 
 	print(verbose = false) {
@@ -22,7 +22,7 @@ export default class {
 		if(verbose) {
 			info += "<b style='color: #FFB505;'>Q: </b>";
 
-			for(let i = 1; i < this.request.length; i++)
+			for(let i = 0; i < this.request.length; i++)
 				info += this.request[i] + " ";
 
 			info += "<br><b style='color: #20D644;'>R: </b>";
