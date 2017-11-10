@@ -10,12 +10,17 @@ export default class {
 	}
 
 	execute(query) {
-		let result;
+		if(query.length > 1) {
+			this.queries.push(new Query());
 
-		this.queries.push(new Query());
+			this.queries[this.queries.length - 1].setRequest(query.split(" "));
+			this.queries[this.queries.length - 1].execute();
+		}
+		else if(typeof query === 'string' || query instanceof String) {
+			this.queries.push(new Query());
 
-		this.queries[this.queries.length - 1].setRequest(query.split(" "));
-		this.queries[this.queries.length - 1].execute();
+			this.queries[this.queries.length - 1].execute();
+		}
 	}
 
 	redraw() {

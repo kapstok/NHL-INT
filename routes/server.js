@@ -16,19 +16,64 @@ function routeQuery(query) {
 	let id = Math.random();
 	console.log("ID: " + id);
 
-	let script = require(serverPath + query[0] + '.js');
+	let clientquery = false;
+
+	let script = {}
+	script.execute = function(query) {
+		let prog = require(serverPath + query[0] + '.js');
+		return prog.execute(query);
+	}
 
 	let superquery = []; // Copy of query to prevent changes on query.
 	let subquery = []; // subquery is the part of superquery that is being parsed in this function.
-	let superresult, subresult; // superresult is necessary due to bugs occuring when returning from .forEach function.
+	let superresult = ""; // superresult is necessary due to bugs occuring when returning from .forEach function.
+	let subresult = null;
 
 	query.forEach((param) => { superquery.push(param); });
 
 	superquery.forEach((param) => {
 		switch(param) {
 			case "^":
+				clientquery = !clientquery;
+				if(subresult != null) {
+					subquery.push(subresult);
+					subresult = null;
+				}
+				superresult += script.execute(subquery);
+				subquery = [];
+				break;
+			case "|":
+				if(clientquery)
+					superresult += param + " ";
+				else {
+					if(subresult != null) {
+						subquery.push(subresult);
+						subresult = null;
+					}
+					subresult = script.execute(subquery);
+					subquery = [];
+				}
+				break;
+			default:
+				if(clientquery)
+					superresult += param + " ";
+				else
+					subquery.push(param);
+				break;
+		}
+	});
+
+	if(subquery.length > 0)
+		superresult += script.execute(subquery);
+
+/*	superquery.forEach((param) => {
+		switch(param) {
+			case "^":
 				subresult = script.execute (subquery);
-				return [superquery.splice(0, subquery.length), subresult];
+				console.log("subr");console.log(subresult);
+				let dbg = [superquery.splice(0, subquery.length), subresult];
+				console.log("dbg");console.log(dbg);
+				return dbg;
 				break;
 			case "|":
 				subresult = script.execute (subquery);
@@ -57,7 +102,7 @@ function routeQuery(query) {
 	if(superresult == null)
 		superresult = script.execute(subquery);
 
-	return superresult;
+*/	return superresult;
 }
 
 app.post("/form", function (req, res) {
