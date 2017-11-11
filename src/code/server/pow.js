@@ -12,7 +12,7 @@ function execute (args) {
 	for(let i = 0; i < args[2] - 1; i++)
 		result *= args[1];
 
-	return result;
+	return String(result);
 }
 
 module.exports.execute = execute;

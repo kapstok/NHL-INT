@@ -27,8 +27,9 @@ export default function(query) {
 				serverquery = !serverquery;
 				clientOnly = false;
 
+				console.log("??????/");
+
 				if(!serverquery) {
-					console.log("??????/");
 					subquery.push(param);
 					routeQuery(subquery, query.response, querynum);
 //					subquery = [];

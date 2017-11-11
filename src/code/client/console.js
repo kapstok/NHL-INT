@@ -14,12 +14,12 @@ export default class {
 			this.queries.push(new Query());
 
 			this.queries[this.queries.length - 1].setRequest(query.split(" "));
-			this.queries[this.queries.length - 1].execute();
+			this.queries[this.queries.length - 1].toServer();
 		}
 		else if(typeof query === 'string' || query instanceof String) {
 			this.queries.push(new Query());
 
-			this.queries[this.queries.length - 1].execute();
+			this.queries[this.queries.length - 1].toServer();
 		}
 	}
 

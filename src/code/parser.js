@@ -12,7 +12,7 @@ window.Parse = function() {
 	});
 	return false;
 }
-
+/*
 window.toServer = function(request, response, id) {
 	console.log("Sending request..");
 	let xhttp = new XMLHttpRequest();
@@ -31,4 +31,4 @@ window.toServer = function(request, response, id) {
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	console.log("request: " + request);
 	xhttp.send(request);
-}
+}*/
