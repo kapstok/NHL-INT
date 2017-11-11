@@ -5,7 +5,7 @@ function execute (args) {
 	let result = args[1];
 
 	if(args[2] == 1)
-		return result;
+		return String(result);
 	else if(args[2] < 1)
 		return 1;
 

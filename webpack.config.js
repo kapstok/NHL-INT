@@ -1,14 +1,10 @@
 const path = require('path');
 
 module.exports = {
-	/*
-		The app starts from views/terminal.ejs. This should
-		not require any dependencies, except for the Webpack
-		entry point.
-	*/
-	entry: ["./src/code/query.js","./src/code/client/console.js","./src/code/client/operators.js", "./src/code/parser.js"],
+	// Note: entryfile should always be last element in the array.
+	entry: ["./logic/client/query.js","./logic/client/console.js","./logic/client/parser.js", "./logic/client/entry.js"],
 	output: {
-		filename: "bundle.js", // Tmp name.
+		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")
 	},
 	resolve: {
