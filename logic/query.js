@@ -1,5 +1,7 @@
 import parseOps from './parser.js';
 
+const buddy = "localhost:3100/";
+
 export default class {
 	constructor() {
 		this.request = [];
@@ -25,7 +27,7 @@ export default class {
 			}
 		};
 		
-		xhttp.open("POST", "/form?r=" + Math.random(), true); // Random param to force not to use caching.
+		xhttp.open("POST", "http://localhost:3100/?r=" + Math.random(), true); // Random param to force not to use caching.
 		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhttp.send(this.request);
 	}
