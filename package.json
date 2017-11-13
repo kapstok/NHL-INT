@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "webpack & npm start",
-    "start": "npm run server & npm run buddy",
+    "start": "webpack & npm run server & npm run buddy",
     "buddy": "node buddy/app",
     "server": "node app"
   },
   "author": "Jan Allersma",
   "dependencies": {
+    "@types/node": "^8.0.51",
     "JSON": "^1.0.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
