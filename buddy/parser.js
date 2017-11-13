@@ -1,22 +1,18 @@
 const serverPath = './progs/';
 
+function execute(query) {
+	let program;
+
+	program = require(serverPath + query[0] + '.js');
+
+	return program.execute(query);
+}
+
 function routeQuery(query) {
 	let id = Math.random();
 	console.log("ID: " + id);
 
 	let clientquery = true;
-
-	let script = {};
-	
-	script.execute = function(query) {
-		let prog;
-		let subres = subresult;
-
-		subresult = subquery = [];
-		prog = require(serverPath + query[0] + '.js');
-
-		return prog.execute(query.concat(subres));
-	};
 
 	let subquery = []; // subquery is the part of superquery that is being parsed in this function.
 	let superresult = []; // superresult is necessary due to bugs occuring when returning from .forEach function.
@@ -32,13 +28,15 @@ function routeQuery(query) {
 					break;
 
 				// Otherwise, execute the previous (sub)query and push it's result to 'superresult'.
-				superresult.push(script.execute(subquery));
+				superresult.push(execute(subquery.concat(subresult)));
+				subquery = [];
 				break;
 			case "|":
 				if(clientquery)
 					superresult.push(param);
 				else {
-					subresult = script.execute(subquery).split(' ');
+					subresult = execute(subquery.concat(subresult)).split(' ');
+					subquery = [];
 				}
 				break;
 			default:
@@ -51,7 +49,7 @@ function routeQuery(query) {
 	});
 
 	if(subquery.length > 0)
-		superresult.push(script.execute(subquery));
+		superresult.push(execute(subquery.concat(subresult)));
 
 	return superresult;
 }

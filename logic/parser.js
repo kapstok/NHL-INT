@@ -1,22 +1,17 @@
 const clientPath = './progs/';
 
+function execute(query) {
+	let program, prog;
+
+	prog = require(clientPath + query[0] + '.ts');
+	program = new prog();
+
+	return program.execute(query);
+}
+
 export default function(query) {
 	let id = Math.random();
 	console.log("ID: " + id);
-
-	let script = {};
-	
-	script.execute = function(query) {
-		let prog, program;
-		let subres = subresult;
-
-		subresult = subquery = [];
-
-		prog = require(clientPath + query[0] + '.ts');
-		program = new prog();
-
-		return program.execute(query.concat(subres));
-	};
 
 	let superquery = []; // Copy of query to prevent changes on query.
 	let subquery = []; // subquery is the part of superquery that is being parsed in this function.
@@ -26,14 +21,16 @@ export default function(query) {
 
 	superquery.forEach((param) => {
 		
-		if(param == "|")
-			subresult = script.execute(subquery).split(' ');
+		if(param == "|") {
+			subresult = execute(subquery.concat(subresult)).split(' ');
+			subquery = [];
+		}
 		else
 			subquery.push(param);
 
 	});
 	
-	query.response.push(script.execute(subquery));
+	query.response.push(execute(subquery.concat(subresult)));
 
 	console.log("Exit id: " + id);
 	shc.redraw();
