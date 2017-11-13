@@ -1,4 +1,4 @@
-const clientPath = "./progs/";
+const clientPath = './progs/';
 
 export default function(query) {
 	let id = Math.random();
@@ -7,13 +7,15 @@ export default function(query) {
 	let script = {};
 	
 	script.execute = function(query) {
-		let prog;
+		let prog, program;
 		let subres = subresult;
 
 		subresult = subquery = [];
-		prog = require(clientPath + query[0] + '.js');
 
-		return prog.execute(query.concat(subres));
+		prog = require(clientPath + query[0] + '.ts');
+		program = new prog();
+
+		return program.execute(query.concat(subres));
 	};
 
 	let superquery = []; // Copy of query to prevent changes on query.

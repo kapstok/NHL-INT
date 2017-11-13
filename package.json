@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "webpack & npm start",
     "start": "npm run server & npm run buddy",
     "buddy": "node buddy/app",
-    "server": "webpack && node app"
+    "server": "node app"
   },
   "author": "Jan Allersma",
   "dependencies": {
@@ -17,6 +18,8 @@
     "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
     "webpack": "^3.6.0"
   }
 }
