@@ -1,8 +1,8 @@
 import Console from './console.js';
 
-window.shc = new Console();
+global.shc = new Console();
 
-window.Parse = function() {
+global.Parse = function() {
 	$(document).ready(function(){
 		shc.execute($("#input").val());
 		$("#input").val("");

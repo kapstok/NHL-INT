@@ -40,12 +40,6 @@ input {
 	margin: 0;
 }
 
-/* Unorthodox way of hiding object. Actual hiding of the element could cause browsers not to work properly. */
-#uploader {
-	position: fixed;
-	top: -1000px;
-}
-
 @-webkit-keyframes Gradient {
 	0% {
 		background-position: 0% 50%

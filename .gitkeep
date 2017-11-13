@@ -1,3 +1,0 @@
-!dist/style
-# dist/style needs to be saved, since this is a symlink and therefore won't
-# be compiled by Webpack.

@@ -13,7 +13,7 @@ export default class {
 		if(query.length > 1)
 			this.queries[this.queries.length - 1].request = query.split(' ');
 
-		this.queries[this.queries.length - 1].toServer();
+		this.queries[this.queries.length - 1].toBuddy();
 	}
 
 	redraw() {

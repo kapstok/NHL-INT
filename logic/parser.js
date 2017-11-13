@@ -34,5 +34,5 @@ export default function(query) {
 	query.response.push(script.execute(subquery));
 
 	console.log("Exit id: " + id);
-	window.shc.redraw();
+	shc.redraw();
 }

@@ -3,15 +3,10 @@ app = express();
 var path = require('path');
 
 var terminal = require('./routes/terminal');
-var server = require('./routes/server');
-
-var $ = require('jquery');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'view/templates'));
 app.set('view engine', 'pug');
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/bundle', express.static(__dirname + '/dist/bundle.js'));
 app.use('/style', express.static(__dirname + '/view'));

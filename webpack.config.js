@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	// Note: entryfile should always be last element in the array.
-	entry: ["./logic/client/query.js","./logic/client/console.js","./logic/client/parser.js", "./logic/client/entry.js"],
+	entry: ["./logic/query.js","./logic/console.js","./logic/parser.js", "./logic/entry.js"],
 	output: {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")

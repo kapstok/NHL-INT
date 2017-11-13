@@ -1,7 +1,5 @@
 import parseOps from './parser.js';
 
-const buddy = "localhost:3100/";
-
 export default class {
 	constructor() {
 		this.request = [];
@@ -12,7 +10,7 @@ export default class {
 		parseOps(this);
 	}
 
-	toServer() {
+	toBuddy() {
 		let that = this;
 		let xhttp = new XMLHttpRequest();
 		
